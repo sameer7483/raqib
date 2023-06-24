@@ -3,7 +3,6 @@ from enum import Enum
 import boto3
 from botocore.exceptions import ClientError
 from datetime import datetime
-import uuid
 
 
 # Configure AWS SDK
@@ -23,16 +22,17 @@ class Status(Enum):
     DELIVERED = 8
 
 def lambda_handler(event, context):
-    print(event)
     data = json.loads(event['body'])
     order_id = data.get('orderId')
     product_id = data.get('productId')
-    id = str(uuid.uuid4())
+    seq_num = data.get('seqNum')
+    id = '-'.join([order_id, product_id, str(seq_num)])
     # Create a new document with the required attributes
     document = {
         'id': id,
         'orderId': order_id,
         'productId': product_id,
+        'seqNum': seq_num,
         'status': Status.DEFAULT.value,
         'creationDate': datetime.now().isoformat()
     }
