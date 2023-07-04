@@ -1,0 +1,23 @@
+const initialState = {
+    itemInfo: null,
+  };
+  
+  const itemReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case 'SEARCH_ITEM_SUCCESS':
+        return {
+          ...state,
+          itemList: action.payload,
+        };
+      case 'CREATE_ITEM_SUCCESS':
+        return {
+          ...state,
+          imageUrl: action.payload,
+        };        
+      default:
+        return state;
+    }
+  };
+  
+  export default itemReducer;
+  

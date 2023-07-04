@@ -21,16 +21,31 @@ def lambda_handler(event, context):
         if document:
             return {
                 'statusCode': 200,
-                'body': json.dumps(document, default = decimal_default)
+                'body': json.dumps(document, default = decimal_default),
+                'headers': {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+                    },
             }
         else:
             return {
                 'statusCode': 404,
-                'body': json.dumps('Document not found')
+                'body': json.dumps('Document not found'),
+                'headers': {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+                    },                
             }
     except ClientError as e:
         print('Unable to get document:', e.response['Error']['Message'])
         return {
             'statusCode': 500,
-            'body': json.dumps('Unable to get document')
+            'body': json.dumps('Unable to get document'),
+                'headers': {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+                    },            
         }

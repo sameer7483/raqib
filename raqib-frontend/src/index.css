@@ -1,0 +1,31 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* index.css */
+ul li a {
+  color: #000;
+ }
+ 
+ ul li a:hover {
+  color: #00a8ff;
+ }
+ 
+ ul li a.active {
+  color: #00a8ff;
+ }
+
+/* Add any additional styling as needed */
