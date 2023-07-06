@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createItem } from '../actions/itemActions';
 import { Button, Container, TextField, Typography } from '@mui/material';
@@ -8,9 +8,15 @@ function CreateItem() {
   const [orderId, setOrderId] = useState('');
   const [productId, setProductId] = useState('');
   const [seqNum, setSeqNum] = useState('');
+  const [isOrderIdValid, setIsOrderIdValid] = useState(true);
+  const [isProductIdValid, setIsProductIdValid] = useState(true);
   const [isSeqNumValid, setIsSeqNumValid] = useState(true);
   const isFormValid = orderId && productId && seqNum && isSeqNumValid;
   const imageUrl = useSelector((state) => state.item.imageUrl);
+
+  useEffect(() => {
+    dispatch({ type: 'RESET'});
+  }, []); // Call reset when the component mounts
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,8 +26,19 @@ function CreateItem() {
     setSeqNum('');
   };
 
+  const handleOrderIdChange = (e) => {
+    const value = e.target.value.trim();
+    setOrderId(value);
+    setIsOrderIdValid(/^[a-zA-Z0-9]+$/.test(value));
+  };
+
+  const handleProductIdChange = (e) => {
+    const value = e.target.value.trim();
+    setProductId(value);
+    setIsProductIdValid(/^[a-zA-Z0-9]+$/.test(value));
+  };
   const handleSeqNumChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();;
     setSeqNum(value);
     setIsSeqNumValid(/^\d+$/.test(value));
   };
@@ -34,20 +51,24 @@ function CreateItem() {
           label="Order ID"
           variant="outlined"
           value={orderId}
-          onChange={(e) => setOrderId(e.target.value)}
+          onChange={handleOrderIdChange}
           fullWidth
           margin="normal"
           required
+          error={!isOrderIdValid}
+          helperText={!isOrderIdValid && 'OrderId must be alphanumeric'}             
         />
 
         <TextField
           label="Product ID"
           variant="outlined"
           value={productId}
-          onChange={(e) => setProductId(e.target.value)}
+          onChange={handleProductIdChange}
           fullWidth
           margin="normal"
           required
+          error={!isProductIdValid}
+          helperText={!isProductIdValid && 'ProductId must be alphanumeric'}           
         />
 
         <TextField

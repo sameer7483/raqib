@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import Pool from '../UserPool';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 const AccountContext = createContext();
 
 const Account = (props) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     checkSession();
   }, []);
@@ -68,6 +70,7 @@ const Account = (props) => {
     }
     setIsAuthenticated(false);
     clearTokens();
+    dispatch({ type: 'RESET'});
     navigate('/signin'); // Redirect to sign-in page
   };
 

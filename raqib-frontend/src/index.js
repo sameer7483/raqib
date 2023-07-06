@@ -14,7 +14,9 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        <div className="app-container">
+          <App />
+        </div>
       </ThemeProvider>
     </Provider>,
   </BrowserRouter>

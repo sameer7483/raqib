@@ -13,7 +13,13 @@ const initialState = {
         return {
           ...state,
           imageUrl: action.payload,
-        };        
+        };
+      case 'RESET':
+        return {
+          ...state,
+          imageUrl: '',
+          itemList: []
+        };                   
       default:
         return state;
     }

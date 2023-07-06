@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchItem } from '../actions/itemActions';
 import { Link as RouterLink } from 'react-router-dom';
@@ -28,6 +28,13 @@ function SearchItem() {
   const [page, setPage] = useState(0);
   const [orderBy, setOrderBy] = useState('');
   const [order, setOrder] = useState('asc');
+  const [isOrderIdValid, setIsOrderIdValid] = useState(true);
+  const [isProductIdValid, setIsProductIdValid] = useState(true);
+  const [isSeqNumValid, setIsSeqNumValid] = useState(true);
+
+  useEffect(() => {
+    dispatch({ type: 'RESET'});
+  }, []); // Call reset when the component mounts
 
   const ItemInfoContainer = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(2),
@@ -65,6 +72,23 @@ function SearchItem() {
     setOrder(isAsc ? 'desc' : 'asc');
   };
 
+  const handleOrderIdChange = (e) => {
+    const value = e.target.value.trim();
+    setOrderId(value);
+    setIsOrderIdValid(/^[a-zA-Z0-9]+$/.test(value));
+  };
+
+  const handleProductIdChange = (e) => {
+    const value = e.target.value.trim();
+    setProductId(value);
+    setIsProductIdValid(/^[a-zA-Z0-9]+$/.test(value));
+  };
+
+  const handleSeqNumChange = (e) => {
+    const value = e.target.value.trim();;
+    setSeqNum(value);
+    setIsSeqNumValid(/^\d+$/.test(value));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,27 +106,33 @@ function SearchItem() {
           label="Order ID"
           variant="outlined"
           value={orderId}
-          onChange={(e) => setOrderId(e.target.value)}
+          onChange={handleOrderIdChange}
           fullWidth
           margin="normal"
+          error={!isOrderIdValid}
+          helperText={!isOrderIdValid && 'OrderId must be alphanumeric'}            
         />
 
         <TextField
           label="Product ID"
           variant="outlined"
           value={productId}
-          onChange={(e) => setProductId(e.target.value)}
+          onChange={handleProductIdChange}
           fullWidth
           margin="normal"
+          error={!isProductIdValid}
+          helperText={!isProductIdValid && 'ProductId must be alphanumeric'}           
         />
 
         <TextField
           label="Sequence Number"
           variant="outlined"
           value={seqNum}
-          onChange={(e) => setSeqNum(e.target.value)}
+          onChange={handleSeqNumChange}
           fullWidth
-          margin="normal"       
+          margin="normal"
+          error={!isSeqNumValid}
+          helperText={!isSeqNumValid && 'Sequence number must be a number'}                   
         />
         <Button variant="contained" color="primary" type="submit">
           Search

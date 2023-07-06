@@ -25,7 +25,7 @@ export const createItem = (orderId, productId, seqNum) => async (dispatch) => {
     
   } catch (error) {
     console.error('Error creating item:', error);
-    // Dispatch error action if necessary
+    alert(`Error creating item : ${error}`);
   }
 };
 
@@ -45,9 +45,19 @@ export const searchItem = (orderId, productId, seqNum) => async (dispatch) => {
   try {
     const itemInfo = await searchItemService(orderId, productId, seqNum);
     console.log(itemInfo);
+    if(itemInfo.length == 0)
+      alert("No item found for the given query");
     dispatch({ type: 'SEARCH_ITEM_SUCCESS', payload: itemInfo });
   } catch (error) {
     console.error('Error fetching item info:', error);
-    // Dispatch error action if necessary
+    alert(`Error fetching item info: ${error}`);
   }
 };
+
+// export const logout = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: 'LOGOUT'});
+//   } catch (error) {
+//     console.error('Error while logging out :', error);
+//   }
+// };
