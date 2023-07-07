@@ -10,6 +10,7 @@ import './index.css';
 import Signin from './components/Signin';
 import { Account } from './components/Account';
 import PrivateRoute from './components/PrivateRoute'
+import GetQr from './components/GetQr';
 
 function App() {
   return (
@@ -34,11 +35,15 @@ function App() {
            </PrivateRoute>
           } />
           <Route path="/products/:slug" element={
-          
           <PrivateRoute>
           <ProductDetails />
          </PrivateRoute>          
           } />
+          <Route path="/getqr" element={
+          <PrivateRoute>
+          <GetQr />
+         </PrivateRoute>          
+          } />          
         </Routes>
       </Account>
     <Footer />   

@@ -89,7 +89,7 @@ function CreateItem() {
       </form>
       {imageUrl && (
         <div>
-          <h3>QR Code for: {imageUrl.split("/").pop()}</h3>
+          <h3>QR Code for: {imageUrl.split("/").slice(-3).join('-')}</h3>
           <img src={imageUrl} alt="QR Code"  width="150px" height="150px"/>
         </div>
       )}

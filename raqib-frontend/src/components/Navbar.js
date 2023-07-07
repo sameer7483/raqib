@@ -26,6 +26,9 @@ const Navbar = () => {
         <Button component={NavLink} to="/searchitem" color="inherit" activeClassName="active-link">
           Search Item
         </Button>
+        <Button component={NavLink} to="/getqr" color="inherit" activeClassName="active-link">
+          Get QR
+        </Button>        
         {isAuth ? (
           <Button color="inherit" onClick={handleLogout}>
             Logout

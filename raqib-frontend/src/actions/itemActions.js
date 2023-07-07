@@ -16,7 +16,8 @@ export const createItem = (orderId, productId, seqNum) => async (dispatch) => {
     const response = await createItemService(orderId, productId, seqNum);
     // Dispatch success action if necessary
     const id = [orderId, productId, seqNum].join('-');
-    const imageUrl = `https://raqib-storage.s3.amazonaws.com/${id}`;
+    const key =[orderId, productId, seqNum].join('/');
+    const imageUrl = `https://raqib-storage.s3.amazonaws.com/${key}`;
     if (response && response.data && response.data.error === 'Item already exists') {
       // Item already exists, show alert or perform desired action
       alert(`Item already exists: ${id}`);
