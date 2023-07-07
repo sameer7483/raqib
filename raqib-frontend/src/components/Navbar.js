@@ -20,19 +20,23 @@ const Navbar = () => {
         <Button component={NavLink} to="/" color="inherit" activeClassName="active-link" exact>
           Home
         </Button>
+
+       
+        {isAuth ? (
+          <>
         <Button component={NavLink} to="/createitem" color="inherit" activeClassName="active-link">
           Create Item
         </Button>
         <Button component={NavLink} to="/searchitem" color="inherit" activeClassName="active-link">
           Search Item
-        </Button>
+        </Button>          
         <Button component={NavLink} to="/getqr" color="inherit" activeClassName="active-link">
           Get QR
-        </Button>        
-        {isAuth ? (
+        </Button>           
           <Button color="inherit" onClick={handleLogout}>
             Logout
           </Button>
+          </>
         ) : (
           <Button component={NavLink} to="/signin" color="inherit" activeClassName="active-link">
             Sign In
