@@ -21,8 +21,8 @@ function CreateItem() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createItem(orderId, productId, seqNum)); 
-    setOrderId('');
-    setProductId('');
+    // setOrderId('');
+    // setProductId('');
     setSeqNum('');
   };
 
