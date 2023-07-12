@@ -5,7 +5,7 @@ import { updateStatus } from '../actions/itemActions';
 import { Container, Typography, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
 const statusMap = {
   0: 'DEFAULT',
   1: 'ON_LOOM',
@@ -42,7 +42,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState(undefined);
   const { slug } = useParams();
-  const userRole = sessionStorage.getItem('role');
+  const userRole = Cookies.get('role');
   useEffect(() => {
     const fetchProduct = async () => {
       

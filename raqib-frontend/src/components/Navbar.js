@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { AccountContext } from './Account';
-
+import Cookies from 'js-cookie';
 const Navbar = () => {
   
-  const { isAuthenticated, logout } = useContext(AccountContext);
-  const isAuth = sessionStorage.getItem('isAuthenticated');
+  const { logout } = useContext(AccountContext);
+  const isAuth = Cookies.get('isAuthenticated');
   const handleLogout = () => {
     logout(); // Call the logout function from your authentication context
   };
