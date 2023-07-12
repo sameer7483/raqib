@@ -46,7 +46,7 @@ const Account = (props) => {
 
       user.authenticateUser(authDetails, {
         onSuccess: data => {
-          console.log('onSuccess:', data);
+          // console.log('onSuccess:', data);
           setIsAuthenticated(true);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 60 * 60 * 1000);

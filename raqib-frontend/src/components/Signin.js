@@ -13,7 +13,7 @@ const Signin = () => {
     const requestedUrl = sessionStorage.getItem('requestedUrl');
     authenticate(username, password)
       .then(data => {
-        console.log('Logged in!', data);
+        // console.log('Logged in!', data);
         navigate(requestedUrl || '/');
       })
       .catch(err => {
