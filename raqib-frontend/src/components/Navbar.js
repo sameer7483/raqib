@@ -25,10 +25,10 @@ const Navbar = () => {
         {isAuth ? (
           <>
         <Button component={NavLink} to="/createitem" color="inherit" activeClassName="active-link">
-          Create Item
+          Create
         </Button>
         <Button component={NavLink} to="/searchitem" color="inherit" activeClassName="active-link">
-          Search Item
+          Search
         </Button>          
         <Button component={NavLink} to="/getqr" color="inherit" activeClassName="active-link">
           Get QR

@@ -1,12 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Typography, TextField, Button, Container } from '@mui/material';
 import { AccountContext } from './Account';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 const Signin = () => {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(Cookies.get('isAuthenticated')){
+      navigate('/');
+    }
+  }, []);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  
   const { authenticate } = useContext(AccountContext);
   const handleSignin = async (e) => {
     e.preventDefault();

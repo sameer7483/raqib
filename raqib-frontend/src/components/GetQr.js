@@ -25,13 +25,13 @@ function GetQr() {
   };
 
   const handleOrderIdChange = (e) => {
-    const value = e.target.value.trim();
+    const value = e.target.value.toUpperCase().trim();
     setOrderId(value);
     setIsOrderIdValid(/^[a-zA-Z0-9]+$/.test(value));
   };
 
   const handleProductIdChange = (e) => {
-    const value = e.target.value.trim();
+    const value = e.target.value.toUpperCase().trim();
     setProductId(value);
     setIsProductIdValid(/^[a-zA-Z0-9]+$/.test(value));
   };

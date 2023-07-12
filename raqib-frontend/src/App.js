@@ -65,8 +65,9 @@ function App() {
          </PrivateRoute>          
           } />          
         </Routes>
-      </Account>
-    <Footer />   
+      <Footer />   
+    </Account>
+      
     </>
   );
 }

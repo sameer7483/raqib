@@ -49,7 +49,7 @@ const Account = (props) => {
           // console.log('onSuccess:', data);
           setIsAuthenticated(true);
           const expirationDate = new Date();
-          expirationDate.setTime(expirationDate.getTime() + 60 * 60 * 1000);
+          expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000);
           Cookies.set('isAuthenticated', 'true');
           Cookies.set('accessToken', data.getAccessToken().getJwtToken(), {
             expires: expirationDate,
